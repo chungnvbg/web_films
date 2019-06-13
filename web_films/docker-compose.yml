@@ -1,0 +1,19 @@
+version: "3"
+services:
+    webfilms:
+        build: .
+        ports:
+            - 4000:6060
+        env_file:
+            - .env
+        working_dir: /app
+        volumes:
+            - .:/app
+            - /app/node_modules
+        links:
+            - database
+
+    database:
+        image: "mariadb"
+        env_file:
+          - .env
